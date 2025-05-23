@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Digital Clock & Stopwatch</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="clock.css">
 </head>
 <body>
   <div class="container">
     <h1>Digital Clock & Stopwatch</h1>
 
     <!-- Digital Clock -->
-    <div id="digitalClock" class="clock"></div>
+    <div id="digitalClock" class="clock">00:00:00</div>
 
     <!-- Stopwatch -->
     <div class="stopwatch">
       <div id="stopwatchDisplay">00:00:00</div>
       <div class="buttons">
-        <button id="startPauseBtn">Start</button>
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
         <button id="resetBtn">Reset</button>
       </div>
     </div>
   </div>
 
+  <!-- JS Scripts -->
   <script src="clock.js"></script>
   <script src="stopwatch.js"></script>
 </body>
