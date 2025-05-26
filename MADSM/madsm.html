@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADSM - Dr. A. Mahendran's Academic Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #2563eb 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes numberChange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
+        .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .animate-slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        .animate-slide-in-up { animation: slideInUp 0.6s ease-out; }
+        .animate-scale-in { animation: scaleIn 0.6s ease-out; }
+        .animate-bounce-in { animation: bounceIn 0.8s ease-out; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+        .animate-spin-slow { animation: spinSlow 3s linear infinite; }
+        .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+        .animate-number-change { animation: numberChange 0.3s ease-in-out; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fixed Sidebar */
+        .sidebar {
+    display: flex;                  /* Side-by-side layout */
+    justify-content: center;       /* Center horizontally */
+    align-items: flex-start;       /* Align top edges */
+    gap: 32px;                     /* Space between widgets */
+    margin-top: 60px;              /* Push down a bit from top */
+    padding: 20px;
+    position: relative;            /* Not floating anymore */
+    width: 100%;                   /* Full width of container */
+    flex-wrap: wrap;               /* Responsive wrapping if needed */
+}
+
+        
+
+        .clock-widget, .stopwatch-widget {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            min-width: 280px;
+        }
+
+        .widget-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .widget-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .time-display {
+            font-size: 28px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .date-display {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .widget-quote {
+            font-size: 12px;
+            color: #fcd34d;
+            font-style: italic;
+        }
+
+        .stopwatch-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 16px 0;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .professor-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .professor-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            margin: 0 auto 32px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-title {
+            font-size: 96px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fbbf24, #ec4899, #9333ea);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .subtitle {
+            font-size: 36px;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .description {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .action-btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+        }
+
+        .secondary-btn {
+            background: linear-gradient(135deg, #eab308, #f97316);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 80px 0;
+            margin: 60px 0;
+        }
+
+        .stats-title {
+            font-size: 48px;
+            color: white;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.1);
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin: 80px 0;
+        }
+
+        .section-card {
+            padding: 40px;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-content {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .list-dot {
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.1);
+        }
+
+        .publication-item, .patent-item, .seminar-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover, .patent-item:hover, .seminar-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .item-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+
+        .item-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: rgba(147, 51, 234, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .award-highlight {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(249, 115, 22, 0.3));
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            border-radius: 16px;
+            padding: 32px;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .award-title {
+            font-size: 24px;
+            color: #fcd34d;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .footer-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .footer-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .footer-text {
+            opacity: 0.7;
+            font-size: 18px;
+        }
+
+        /* Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            fill: currentColor;
+        }
+
+        .icon-large {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 20px 0;
+                right: auto;
+                top: auto;
+            }
+
+            .clock-widget, .stopwatch-widget {
+                min-width: auto;
+                flex: 1;
+                max-width: 300px;
+            }
+
+            .main-title {
+                font-size: 48px;
+            }
+
+            .subtitle {
+                font-size: 24px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Header -->
+    <header class="header">
+        <img src="mahi sir.jpg" 
+                 alt="Dr. A. Mahendran" 
+                 class="professor-image animate-float">
+
+            <h1 class="main-title">MADSM</h1>
+            <h2 class="subtitle animate-slide-in-up">Dr. A. Mahendran's Academic Profile</h2>
+            <p class="description animate-fade-in">
+                Discover the exceptional academic journey of Dr. A. Mahendran, M.Sc., NET., (Ph.D)., CCNA - 
+                Assistant Professor in IT/CS, Cisco Trainer, and research leader shaping tomorrow's technology landscape.
+            </p>
+ <!-- Fixed Sidebar with Clock and Stopwatch -->
+    <div class="sidebar" id="sidebar">
+        <div class="clock-widget animate-pulse-glow">
+            <div class="widget-header">
+                <svg class="icon animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12,6 12,12 16,14"></polyline>
+                </svg>
+                <span class="widget-title">Dr. Mahendran's Time</span>
+            </div>
+            <div class="time-display animate-fade-in" id="current-time">00:00:00</div>
+            <div class="date-display animate-slide-in-up" id="current-date">Loading...</div>
+            <div class="widget-quote animate-pulse">
+                "Time is the most valuable asset in academia"
+            </div>
+        </div>
+
+        <div class="stopwatch-widget animate-scale-in">
+            <div class="widget-header">
+                <svg class="icon animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12,6 12,12 16,14"></polyline>
+                </svg>
+                <span class="widget-title">Research Timer</span>
+            </div>
+            <div class="time-display animate-number-change" id="stopwatch-time">00:00.00</div>
+            <div class="stopwatch-controls">
+                <button class="control-btn start-btn" id="start-stop-btn" onclick="toggleStopwatch()">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                </button>
+                <button class="control-btn reset-btn" onclick="resetStopwatch()">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1,4 1,10 7,10"></polyline>
+                        <path d="M3.51,15a9,9,0,0,0,2.13,3.09L17.5,6.18A9,9,0,0,0,15,3.51"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="widget-quote">
+                "Measuring moments of brilliance"
+            </div>
+        </div>
+    </div>
+
+            <!-- Mobile Clock and Stopwatch (hidden on desktop) -->
+            <div class="sidebar" id="mobile-sidebar" style="display: none;">
+                <div class="clock-widget animate-pulse-glow">
+                    <div class="widget-header">
+                        <svg class="icon animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12,6 12,12 16,14"></polyline>
+                        </svg>
+                        <span class="widget-title">Dr. Mahendran's Time</span>
+                    </div>
+                    <div class="time-display" id="mobile-current-time">00:00:00</div>
+                    <div class="date-display" id="mobile-current-date">Loading...</div>
+                    <div class="widget-quote">
+                        "Time is the most valuable asset in academia"
+                    </div>
+                </div>
+
+                <div class="stopwatch-widget animate-scale-in">
+                    <div class="widget-header">
+                        <svg class="icon animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12,6 12,12 16,14"></polyline>
+                        </svg>
+                        <span class="widget-title">Research Timer</span>
+                    </div>
+                    <div class="time-display" id="mobile-stopwatch-time">00:00.00</div>
+                    <div class="stopwatch-controls">
+                        <button class="control-btn start-btn" id="mobile-start-stop-btn" onclick="toggleStopwatch()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5,3 19,12 5,21"></polygon>
+                            </svg>
+                        </button>
+                        <button class="control-btn reset-btn" onclick="resetStopwatch()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="1,4 1,10 7,10"></polyline>
+                                <path d="M3.51,15a9,9,0,0,0,2.13,3.09L17.5,6.18A9,9,0,0,0,15,3.51"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="widget-quote">
+                        "Measuring moments of brilliance"
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="#about" class="action-btn primary-btn" onclick="scrollToSection('about')">
+                    Explore Profile
+                </a>
+                <a href="#achievements" class="action-btn secondary-btn" onclick="scrollToSection('achievements')">
+                    View Achievements
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h3 class="stats-title animate-fade-in">Academic Excellence</h3>
+            <div class="stats-grid">
+                <div class="stat-card animate-bounce-in" style="animation-delay: 0s;">
+                    <div class="stat-number" style="color: #60a5fa;">60,000+</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+                
+                <div class="stat-card animate-bounce-in" style="animation-delay: 0.4s;">
+                    <div class="stat-number" style="color: #34d399;">4.8/5</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-card animate-bounce-in" style="animation-delay: 0.6s;">
+                    <div class="stat-number" style="color: #fbbf24;">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- About Section -->
+        <section id="about" class="content-section animate-slide-in-left">
+            <div class="glass-card section-card">
+                <h3 class="section-title">
+                    <svg class="icon-large" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    About Dr. A. Mahendran
+                </h3>
+                <div class="section-content">
+                    <p style="margin-bottom: 24px;">
+                        Dr. A. Mahendran is a distinguished academician with expertise in Information Technology, 
+                        Computer Science, Statistics, and Applied Data Science. His academic credentials include 
+                        M.Sc., NET qualification, Ph.D., and CCNA certification, making him a well-rounded 
+                        professional in the field of technology education.
+                    </p>
+                    <p style="margin-bottom: 32px;">
+                        On October 16, 2024, he was awarded a doctorate degree by the Honorable Governor of 
+                        Tamil Nadu, Mr. R. N. Ravi, marking a significant milestone in his academic career.
+                    </p>
+
+                    <div class="two-column">
+                        <div>
+                            <h4 style="font-size: 24px; margin-bottom: 16px; color: #60a5fa;">Teaching Experience</h4>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>5 years at Ganesh College Computer Science Department</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>1 year as Head of Department at Ganesh College</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot"></div>
+                                <span>4 years teaching experience at Sowdeswari College</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 24px; margin-bottom: 16px; color: #a78bfa;">Personal Interests</h4>
+                            <div class="list-item">
+                                <div class="list-dot" style="background: #a78bfa;"></div>
+                                <span>Traveling and exploration</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot" style="background: #a78bfa;"></div>
+                                <span>Playing cricket</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot" style="background: #a78bfa;"></div>
+                                <span>Maintaining healthy diet</span>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-dot" style="background: #a78bfa;"></div>
+                                <span>Leading active lifestyle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 32px;">
+                        <h4 style="font-size: 24px; margin-bottom: 16px; color: #34d399;">Languages</h4>
+                        <div>
+                            <span class="skill-tag" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.5));">
+                                English - Full Professional Proficiency
+                            </span>
+                            <span class="skill-tag" style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(147, 51, 234, 0.5));">
+                                Tamil - Full Professional Proficiency
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="content-section animate-slide-in-right">
+            <div class="glass-card section-card">
+                <h3 class="section-title">
+                    <svg class="icon-large animate-spin-slow" style="color: #34d399;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                    Professional Skills
+                </h3>
+                <div class="section-content">
+                    <div style="margin-bottom: 32px;">
+                        <span class="skill-tag">Freelancing Projects</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Analytical Skills</span>
+                        <span class="skill-tag">Academic Administration</span>
+                        <span class="skill-tag">Statistics</span>
+                        <span class="skill-tag">Research Skills</span>
+                        <span class="skill-tag">Academic Research</span>
+                        <span class="skill-tag">Higher Education Teaching</span>
+                        <span class="skill-tag">University Lecturing</span>
+                        <span class="skill-tag">Educational Technology</span>
+                        <span class="skill-tag">Cisco Trainer</span>
+                        <span class="skill-tag">Qualified Teacher</span>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 24px; margin-bottom: 16px; color: #60a5fa;">Volunteering</h4>
+                        <p style="font-size: 18px;">Facilitator - Child Rights Clubs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards & Recognition -->
+        <section id="achievements" class="content-section animate-slide-in-left">
+            <div class="glass-card section-card">
+                <h3 class="section-title">
+                    <svg class="icon-large animate-pulse" style="color: #fbbf24;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                    Awards & Recognition
+                </h3>
+                <div class="section-content">
+                    <div class="award-highlight">
+                        <h4 class="award-title">Outstanding Faculty Award - 2023</h4>
+                        <p style="font-size: 18px;">Received from RAMFO ACADEMIC AWARDS, Vellore</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seminars -->
+        <section id="seminars" class="content-section animate-slide-in-right">
+            <div class="glass-card section-card">
+                <h3 class="section-title">
+                    <svg class="icon-large animate-pulse" style="color: #a78bfa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Seminars & Events
+                </h3>
+                <div class="section-content">
+                    <div class="seminar-item">
+                        <h4 class="item-title">IT-the real-time project exploration</h4>
+                        <p>Date: 16-9-24</p>
+                    </div>
+                    <div class="seminar-item">
+                        <h4 class="item-title">Essentials of computer communication systems</h4>
+                        <p>Date: 21-7-23</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patents -->
+        <section id="patents" class="content-section animate-slide-in-left">
+            <div class="glass-card section-card">
+                <h3 class="section-title">
+                    <svg class="icon-large" style="color: #10b981;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    Patents
+                </h3>
+                <div class="section-content">
+                    <div class="patent-item">
+                        <h4 class="item-title">Sensor Based Robotic Display for interactive Marketing</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">Country: US</span>
+                            <span class="meta-tag">Design No: 6403643</span>
+                            <span class="meta-tag">Date: Nov 19, 2024</span>
+                        </div>
+                    </div>
+                    <div class="patent-item">
+                        <h4 class="item-title">Adaptive language models for scalable A-Driven content creation</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">Country: CANADA</span>
+                            <span class="meta-tag">Design No: 1228057</span>
+                            <span class="meta-tag">Date: Nov 11, 2024</span>
+                        </div>
+                    </div>
+                    <div class="patent-item">
+                        <h4 class="item-title">Artificial intelligence embedded Pentacopter drone for seed dispersal</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">Country: INDIA</span>
+                            <span class="meta-tag">Design No: Pending</span>
+                            <span class="meta-tag">Date: 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications" class="content-section animate-slide-in-right">
+            <div class="glass-card section-card">
+                <h3 class="section-title">
+                    <svg class="icon-large animate-pulse" style="color: #60a5fa;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    Publications
+                </h3>
+                <div class="section-content">
+                    <div class="publication-item">
+                        <h4 class="item-title">IoT and blockchain for efficiency in smart home automation with BiLSTM-RNN model</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">IEEE</span>
+                            <span class="meta-tag">Apr 2025</span>
+                        </div>
+                    </div>
+                    <div class="publication-item">
+                        <h4 class="item-title">AI-Powered healthcare with advanced graph convolutional neural networks and SVM for Diagnosis</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">IEEE</span>
+                            <span class="meta-tag">Feb 2025</span>
+                        </div>
+                    </div>
+                    <div class="publication-item">
+                        <h4 class="item-title">A QoS Based Progressive Link Prediction Mathematical Approach for Data Transfer in Manet</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">Journal of Theoretical and Applied Information Technology (Scopus)</span>
+                            <span class="meta-tag">2020</span>
+                        </div>
+                    </div>
+                    <div class="publication-item">
+                        <h4 class="item-title">An Energy Efficient Fault Tolerance Algorithm (EEFTA) For Clustering based Mobile Ad Hoc Network</h4>
+                        <div class="item-meta">
+                            <span class="meta-tag">TELEMATIQUE [Web of Science]</span>
+                            <span class="meta-tag">2022</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 32px; opacity: 0.8;">
+                        <p style="font-size: 18px;">And many more publications in peer-reviewed journals and conferences...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3 class="footer-title">MADSM</h3>
+            <p class="footer-subtitle">Dr. A. Mahendran's Academic Excellence Platform</p>
+            <div class="footer-text">
+                <p>Shaping Tomorrow's Technology Leaders</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Digital Clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+            
+            // Update desktop clock
+            document.getElementById('current-time').textContent = timeString;
+            document.getElementById('current-date').textContent = dateString;
+            
+            // Update mobile clock
+            const mobileTime = document.getElementById('mobile-current-time');
+            const mobileDate = document.getElementById('mobile-current-date');
+            if (mobileTime) mobileTime.textContent = timeString;
+            if (mobileDate) mobileDate.textContent = dateString;
+        }
+
+        // Stopwatch
+        let stopwatchTime = 0;
+        let stopwatchInterval = null;
+        let isRunning = false;
+
+        function formatStopwatchTime(centiseconds) {
+            const minutes = Math.floor(centiseconds / 6000);
+            const seconds = Math.floor((centiseconds % 6000) / 100);
+            const cs = centiseconds % 100;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${cs.toString().padStart(2, '0')}`;
+        }
+
+        function updateStopwatchDisplay() {
+            const timeString = formatStopwatchTime(stopwatchTime);
+            document.getElementById('stopwatch-time').textContent = timeString;
+            
+            const mobileStopwatch = document.getElementById('mobile-stopwatch-time');
+            if (mobileStopwatch) mobileStopwatch.textContent = timeString;
+        }
+
+        function toggleStopwatch() {
+            if (isRunning) {
+                clearInterval(stopwatchInterval);
+                isRunning = false;
+                
+                // Update button icons to play
+                const startBtns = document.querySelectorAll('#start-stop-btn, #mobile-start-stop-btn');
+                startBtns.forEach(btn => {
+                    btn.innerHTML = `
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5,3 19,12 5,21"></polygon>
+                        </svg>
+                    `;
+                });
+            } else {
+                stopwatchInterval = setInterval(() => {
+                    stopwatchTime += 1;
+                    updateStopwatchDisplay();
+                }, 10);
+                isRunning = true;
+                
+                // Update button icons to pause
+                const startBtns = document.querySelectorAll('#start-stop-btn, #mobile-start-stop-btn');
+                startBtns.forEach(btn => {
+                    btn.innerHTML = `
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    `;
+                });
+            }
+        }
+
+        function resetStopwatch() {
+            clearInterval(stopwatchInterval);
+            stopwatchTime = 0;
+            isRunning = false;
+            updateStopwatchDisplay();
+            
+            // Reset button icons to play
+            const startBtns = document.querySelectorAll('#start-stop-btn, #mobile-start-stop-btn');
+            startBtns.forEach(btn => {
+                btn.innerHTML = `
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                `;
+            });
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Responsive handling
+        function handleResize() {
+            const sidebar = document.getElementById('sidebar');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            
+            if (window.innerWidth <= 1024) {
+                sidebar.style.display = 'none';
+                mobileSidebar.style.display = 'flex';
+            } else {
+                sidebar.style.display = 'flex';
+                mobileSidebar.style.display = 'none';
+            }
+        }
+
+        // Animation on scroll
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.content-section');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start clock
+            updateClock();
+            setInterval(updateClock, 1000);
+            
+            // Initialize stopwatch display
+            updateStopwatchDisplay();
+            
+            // Handle responsive layout
+            handleResize();
+            window.addEventListener('resize', handleResize);
+            
+            // Handle scroll animations
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Initial animation check
+            handleScrollAnimations();
+            
+            // Add stagger animation to stat cards
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Add hover effects to skill tags
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach((tag, index) => {
+                tag.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add dynamic number animation to stats
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(number => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-number-change');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                observer.observe(number);
+            });
+        }
+
+        // Initialize number animations
+        document.addEventListener('DOMContentLoaded', animateNumbers);
+    </script>
+</body>
+</html>
