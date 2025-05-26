@@ -1,1 +1,1 @@
-# sona-digital-clock
+# sona-digital-clock.
